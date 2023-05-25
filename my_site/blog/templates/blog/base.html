@@ -24,7 +24,7 @@
 <header class="site-header">
   <nav class="navbar navbar-expand-md navbar-dark bg-blue fixed-top">
     <div class="container">
-      <a class="navbar-brand mr-4" href="{% url 'blog-home' %}"><i class='bx bxs-rocket bx-tada-hover'></i> Places
+      <a class="navbar-brand mr-4" href="{% url 'blog-home' %}"><i class='bx bxs-map'></i> Places
         Remember</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,8 +37,8 @@
         </div>
         <!-- Правая часть навигационной панели -->
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#">Вход</a>
-          <a class="nav-item nav-link" href="#">Регистрация</a>
+          <a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
+          <a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
         </div>
       </div>
     </div>
