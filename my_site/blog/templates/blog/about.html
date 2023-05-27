@@ -1,5 +1,21 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <h1>Places Remember</h1>
-  <p>Данное веб-приложение предоставляет пользователям возможность хранить свои впечатления о посещаемых местах. <br>
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="app-name">
+        <h1>Places Remember</h1>
+      </div>
+      <div class="app-discription">
+        <p>Данное веб-приложение предоставляет пользователям возможность хранить свои впечатления о посещаемых местах.</p>
+        {% if not user.is_authenticated %}
+          <p>Для использования приложения осуществите вход:</p>
+          <div class="d-grid gap-2 col-md-8 mx-auto mb-2">
+            <a href="{% url 'login' %}" class="btn btn-primary bg-blue">Войти</a>
+            <a href="#" class="btn btn-primary bg-blue">Войти с помощью VK</a>
+            </form>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </article>
 {% endblock content %}

@@ -118,3 +118,7 @@ footer a:hover {
   text-decoration: none;
 }
 
+.app-name {
+  margin: 0 auto;
+  text-align: center;
+}
