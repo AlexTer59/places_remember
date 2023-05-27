@@ -12,8 +12,11 @@ from .models import Post
 
 def home(request):
     context = {
-        'posts': Post.objects.all() #return Post.objects.filter(author=user).order_by('-date_posted')
+        'posts': Post.objects.all
+            # Post.objects.filter(author=request.user).order_by('-date_posted')  Посты авторизированного пользователя
+            # чтобы видеть все: Post.objects.all
     }
+    # чтобы видеть все: Post.objects.all
     return render(request, 'blog/home.html', context)
 
 
@@ -54,7 +57,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/'
+    success_url = '/home'
 
     def test_func(self):
         post = self.get_object()
