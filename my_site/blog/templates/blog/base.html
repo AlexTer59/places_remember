@@ -39,12 +39,16 @@
         <div class="navbar-nav">
           {% if user.is_authenticated %}
             {% if not user.has_usable_password %}
-              <img src="{{ request.user.profile.avatar }}" class="rounded-circle header-img" alt="Ваш аватар">
-              <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.first_name }} {{ user.last_name }}</a>
-<!--          <a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>-->
+              <div class="profile-header d-flex align-items-stretch">
+                <img src="{{ request.user.profile.avatar }}" class="rounded-circle header-img" alt="Ваш аватар">
+                <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.first_name }} {{ user.last_name }}</a>
+              </div>
+                <!--          <a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>-->
             {% else %}
-              <img src="{{ user.profile.image.url }}" class="rounded-circle header-img" alt="Ваш аватар">
-              <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+              <div class="profile-header d-flex align-items-stretch">
+                <img src="{{ user.profile.image.url }}" class="rounded-circle header-img" alt="Ваш аватар">
+                <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+              </div>
             {% endif %}
             <a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
           {% else %}
