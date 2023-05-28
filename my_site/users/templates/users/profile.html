@@ -4,8 +4,11 @@
     <div class="content-section">
 
       <div class="media d-flex align-items-stretch">
-        <img src="{{ user.profile.image.url }}" class="rounded-circle account-img">
-
+        {%if backends.associated %}
+          <img src="{{ user.profile.image.url }}" class="rounded-circle account-img">
+        {% else %}
+          <img src="{{ request.user.profile.avatar }}" class="rounded-circle account-img" alt="Ваш аватар" height="300" width="300">
+        {% endif %}
         <div class="media-body">
           <h2 class="account-heading">{{ user.username }}</h2>
           <p class="text-secondary">{{ user.email }}</p>
