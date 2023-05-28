@@ -2,7 +2,11 @@
 {% block content %}
   {% for post in posts %}
     <article class="media content-section d-flex align-items-stretch">
-      <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+      {% if user.has_usable_password %}
+        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+      {% else %}
+        <img class="rounded-circle article-img" src="{{ request.user.profile.avatar }}">
+      {% endif %}
         <div class="media-body">
           <div class="article-metadata">
             <a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>

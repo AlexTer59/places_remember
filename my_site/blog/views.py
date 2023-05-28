@@ -12,7 +12,7 @@ from .models import Post
 
 def home(request):
     context = {
-        'posts': Post.objects.all
+        'posts': Post.objects.filter(author=request.user).order_by('-date_posted')
             # Post.objects.filter(author=request.user).order_by('-date_posted')  Посты авторизированного пользователя
             # чтобы видеть все: Post.objects.all
     }
