@@ -19,6 +19,7 @@
       </div>
       <h2 class="article-title">{{ object.title }}</h2>
       <p class="article-content">{{ object.content }}</p>
+      {{ m|safe }}
     </div>
   </article>
 {% endblock content %}

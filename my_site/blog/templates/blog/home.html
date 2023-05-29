@@ -1,23 +1,27 @@
 ﻿{% extends "blog/base.html" %}
 {% block content %}
+{% if not posts|length == 0 %}
   {% for post in posts %}
-    <article class="media content-section d-flex align-items-stretch">
-      {% if user.has_usable_password %}
-        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
-      {% else %}
-        <img class="rounded-circle article-img" src="{{ request.user.profile.avatar }}">
-      {% endif %}
-        <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>
-            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-          </div>
-          <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
-          <p class="article-content">{{ post.content|safe|slice:"200" }}...</p>
-          <div>
-            <a href="{% url 'post-detail' post.id %}" class="btn btn-primary bg-blue">Читать далее &rarr;</a>
-          </div>
-        </div>
-    </article>
+  <article class="media content-section d-flex align-items-stretch">
+    {% if user.has_usable_password %}
+    <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+    {% else %}
+    <img class="rounded-circle article-img" src="{{ request.user.profile.avatar }}">
+    {% endif %}
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>
+        <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+      </div>
+      <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+      <p class="article-content">{{ post.content|safe|slice:"200" }}...</p>
+      <div>
+        <a href="{% url 'post-detail' post.id %}" class="btn btn-primary bg-blue">Читать далее &rarr;</a>
+      </div>
+    </div>
+  </article>
   {% endfor %}
+{% else %}
+<p class="text-muted text-center">У вас нет ни одного воспоминания</p>
+{% endif %}
 {% endblock content %}

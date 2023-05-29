@@ -8,13 +8,14 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
+import folium
 
 
 def home(request):
     context = {
         'posts': Post.objects.filter(author=request.user).order_by('-date_posted')
-            # Post.objects.filter(author=request.user).order_by('-date_posted')  Посты авторизированного пользователя
-            # чтобы видеть все: Post.objects.all
+        # Post.objects.filter(author=request.user).order_by('-date_posted')  Посты авторизированного пользователя
+        # чтобы видеть все: Post.objects.all
     }
     # чтобы видеть все: Post.objects.all
     return render(request, 'blog/home.html', context)
@@ -30,6 +31,12 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        m = folium.Map(location=[56.8519, 60.6122], zoom_start=12)
+        m = m._repr_html_()
+        ctx['m'] = m
+        return ctx
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -39,6 +46,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        m = folium.Map(location=[56.8519, 60.6122], zoom_start=12)
+        m = m._repr_html_()
+        ctx['m'] = m
+        return ctx
+
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -47,6 +61,13 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        m = folium.Map(location=[56.8519, 60.6122], zoom_start=12)
+        m = m._repr_html_()
+        ctx['m'] = m
+        return ctx
 
     def test_func(self):
         post = self.get_object()
