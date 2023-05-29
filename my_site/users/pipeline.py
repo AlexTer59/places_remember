@@ -1,5 +1,4 @@
 def get_avatar(backend, response, user=None, *args, **kwargs):
-
     if user is None:
         return
 
