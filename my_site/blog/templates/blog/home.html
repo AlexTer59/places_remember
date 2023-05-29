@@ -16,7 +16,7 @@
       <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
       <p class="article-content">{{ post.content|safe|slice:"200" }}...</p>
       <div>
-        <a href="{% url 'post-detail' post.id %}" class="btn btn-primary bg-blue">Читать далее &rarr;</a>
+        <a href="{% url 'post-detail' post.id %}" class="btn btn-primary bg-blue">Подробнее</a>
       </div>
     </div>
   </article>

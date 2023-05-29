@@ -5,8 +5,8 @@ from django.urls import reverse
 
 
 class Post(models.Model):
-    title = models.CharField('Заголовок', max_length=100)
-    content = models.TextField('Описание')
+    title = models.CharField('Название', max_length=100)
+    content = models.TextField('Комментарий')
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
