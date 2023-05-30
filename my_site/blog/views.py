@@ -14,10 +14,9 @@ import folium
 def home(request):
     context = {
         'posts': Post.objects.filter(author=request.user).order_by('-date_posted')
-        # Post.objects.filter(author=request.user).order_by('-date_posted')  Посты авторизированного пользователя
-        # чтобы видеть все: Post.objects.all
+
     }
-    # чтобы видеть все: Post.objects.all
+
     return render(request, 'blog/home.html', context)
 
 
